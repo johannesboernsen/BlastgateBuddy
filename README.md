@@ -1,63 +1,63 @@
 # BlastgateBuddy
 
-Dieses Projekt steuert ein Relais basierend auf den Strommessungen eines ACS712-Sensormoduls. Das System liest den Strom, berechnet einen gleitenden Mittelwert und schaltet ein Relais und eine LED ein oder aus, abhängig davon, ob der Strom einen einstellbaren Schwellwert überschreitet. Zusätzlich verfügt es über eine anpassbare Verzögerung, bevor das Relais ausgeschaltet wird, wenn der Strom unter den Schwellwert fällt.
+This project controls a relay based on current measurements from an ACS712 sensor module. The system reads the current, calculates a moving average, and toggles a relay and an LED on or off depending on whether the current exceeds a user-defined threshold. Additionally, it features a customizable delay before the relay is switched off when the current drops below the threshold.
 
 ## Features
 
-- **Strommessung**: Verwendet das ACS712-Stromsensormodul zur Messung des Stroms.
-- **Relaissteuerung**: Schaltet ein Relais basierend auf den Strommesswerten.
-- **Einstellbarer Schwellwert**: Benutzer können einen Schwellwert einstellen, ab dem das Relais aktiviert wird.
-- **Gleitender Mittelwert**: Reduziert Rauschen durch Berechnung eines gleitenden Mittelwerts der Strommessungen.
-- **Ausschaltverzögerung**: Implementiert eine konfigurierbare Verzögerung, bevor das Relais ausgeschaltet wird, nachdem der Strom unter den Schwellwert gefallen ist.
-- **Eingebaute LED-Steuerung**: Bietet visuelles Feedback mit der LED auf dem Arduino Nano.
-- **Kalibrierung**: Kalibriert den ACS712 automatisch, um einen Nullpunkt festzulegen.
+- **Current Measurement**: Uses the ACS712 current sensor module to measure current.
+- **Relay Control**: Toggles a relay based on the current readings.
+- **Adjustable Threshold**: Users can set a threshold to activate the relay.
+- **Moving Average**: Reduces noise by calculating a moving average of the current readings.
+- **Off Delay**: Implements a configurable delay before switching off the relay after the current drops below the threshold.
+- **Built-in LED Control**: Provides visual feedback using the LED on the Arduino Nano.
+- **Calibration**: Automatically calibrates the ACS712 to establish a zero point.
 
-## Komponenten
+## Components
 
 - **Arduino Nano**
-- **ACS712 Stromsensormodul**
-- **Relaismodul**
-- **LED (auf dem Arduino Nano integriert)**
+- **ACS712 Current Sensor Module**
+- **Relay Module**
+- **LED (integrated on the Arduino Nano)**
 
-## Pinbelegung
+## Pinout
 
-| Komponente    | Arduino-Pin |
-|---------------|-------------|
-| ACS712        | A0          |
-| Relais        | 8           |
-| Eingebaute LED| 13          |
+| Component      | Arduino Pin |
+|----------------|-------------|
+| ACS712         | A0          |
+| Relay          | 8           |
+| Built-in LED   | 13          |
 
-## Einstellbare Parameter
+## Adjustable Parameters
 
-- **`threshold`**: Legt den Stromschwellwert fest, ab dem das Relais eingeschaltet wird (Standard: `30`).
-- **`offDelay`**: Legt die Verzögerung (in Millisekunden) fest, bevor das Relais ausgeschaltet wird, nachdem der Strom unter den Schwellwert gefallen ist (Standard: `10000` Millisekunden).
+- **`threshold`**: Sets the current threshold for switching on the relay (default: `30`).
+- **`offDelay`**: Sets the delay (in milliseconds) before switching off the relay after the current drops below the threshold (default: `10000` milliseconds).
 
-## Code-Erklärung
+## Code Explanation
 
-Das Projekt basiert auf dem Auslesen des ACS712-Stromsensors, der Berechnung der Abweichung von einem kalibrierten Nullpunkt und der Verwendung dieser Daten zur Steuerung eines Relais und einer LED. Die zentralen Elemente sind:
+The project revolves around reading the ACS712 current sensor, calculating the deviation from a calibrated zero point, and using this data to control a relay and an LED. Key elements include:
 
-1. **Gleitender Mittelwert**: Glättet die Messungen, indem die letzten 10 Messungen gespeichert und gemittelt werden.
-2. **Schwellwertlogik**: Das Relais und die LED schalten sich sofort ein, wenn der Strom den Schwellwert überschreitet, und schalten sich mit einer Verzögerung aus, nachdem der Strom unter den Schwellwert fällt.
-3. **Kalibrierung**: Beim Start kalibriert sich der Sensor, um den Nullpunkt zu bestimmen, der zur Berechnung der Stromabweichung verwendet wird.
+1. **Moving Average**: Smooths out readings by storing the last 10 measurements and averaging them.
+2. **Threshold Logic**: The relay and LED switch on immediately when the current exceeds the threshold and switch off with a delay once the current drops below the threshold.
+3. **Calibration**: At startup, the sensor calibrates itself to determine the zero point used for current deviation calculations.
 
-## Aufbau
+## Setup
 
-1. Verbinde die Komponenten gemäß der Pinbelegung.
-2. Lade den Code auf deinen Arduino Nano hoch.
-3. Passe die Werte für `threshold` und `offDelay` im Code nach Bedarf an.
-4. Beobachte die Roh- und Durchschnittswerte des Sensors im seriellen Monitor.
+1. Connect the components according to the pinout.
+2. Upload the code to your Arduino Nano.
+3. Adjust the `threshold` and `offDelay` values in the code as needed.
+4. Use the serial monitor to observe the raw and averaged sensor readings.
 
-## Verwendung
+## Usage
 
-Nach dem Einschalten:
+Once powered on:
 
-1. Kalibriert sich der ACS712-Sensor automatisch.
-2. Überwacht das System kontinuierlich den Strom und aktualisiert den gleitenden Mittelwert.
-3. Schaltet das Relais und die LED ein, wenn der Strom den festgelegten Schwellwert überschreitet.
-4. Lässt das Relais eingeschaltet, solange der Strom über dem Schwellwert bleibt, und schaltet es nach Ablauf der Verzögerung aus, sobald der Strom unter den Schwellwert fällt.
+1. The ACS712 sensor automatically calibrates itself.
+2. The system continuously monitors the current and updates the moving average.
+3. The relay and LED turn on when the current exceeds the set threshold.
+4. The relay remains on as long as the current stays above the threshold and switches off after the delay once the current drops below the threshold.
 
-## Lizenz
+## License
 
-Dieses Projekt steht unter der [GNU General Public License v3.0](LICENSE).
+This project is licensed under the [GNU General Public License v3.0](LICENSE).
 
-> **Hinweis**: Eine Kopie der Lizenz ist im Projekt enthalten. Für weitere Informationen zur Lizenz besuchen Sie die [GNU GPLv3 Webseite](https://www.gnu.org/licenses/gpl-3.0.html).
+> **Note**: A copy of the license is included in the project. For more information about the license, visit the [GNU GPLv3 website](https://www.gnu.org/licenses/gpl-3.0.html).
