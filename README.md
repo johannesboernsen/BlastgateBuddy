@@ -1,4 +1,4 @@
-# ACS712 Current Sensor Controller
+# BlastgateBuddy
 
 Dieses Projekt steuert ein Relais basierend auf den Strommessungen eines ACS712-Sensormoduls. Das System liest den Strom, berechnet einen gleitenden Mittelwert und schaltet ein Relais und eine LED ein oder aus, abhängig davon, ob der Strom einen einstellbaren Schwellwert überschreitet. Zusätzlich verfügt es über eine anpassbare Verzögerung, bevor das Relais ausgeschaltet wird, wenn der Strom unter den Schwellwert fällt.
 
