@@ -66,6 +66,21 @@ The project revolves around reading the ACS712 current sensor, calculating the d
 2. **Threshold Logic**: The relay and LED switch on immediately when the current exceeds the threshold and switch off with a delay once the current drops below the threshold.
 3. **Calibration**: At startup, the sensor calibrates itself to determine the zero point used for current deviation calculations.
 
+## Wiring and Power Supply
+
+This project is powered by a 24V power supply with a minimum output of 18 watts. The 24V supply is distributed to multiple components in the system:
+
+1. A **step-down converter** reduces the 24V to 5V, which powers the Arduino, the relay module, and the ACS712 sensor.
+2. The 24V supply is also used to operate a **24V solenoid valve**, which controls the airflow to the pneumatic cylinder.
+
+### Solenoid Valve Operation
+
+The 24V solenoid valve controls the pneumatic cylinder by directing airflow based on its state:
+- **When 24V is supplied to the valve**, it opens the air channel to extend the pneumatic cylinder.
+- **When 24V is removed**, the valve redirects the air, causing the cylinder to retract.
+
+This setup uses a **5/2 solenoid valve**, which has two states and five ports. This allows for precise control of the airflow and ensures reliable operation of the pneumatic cylinder in both directions.
+
 ## Setup
 
 1. Connect the components according to the pinout.
