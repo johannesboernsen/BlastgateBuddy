@@ -28,7 +28,7 @@ When working with electrical systems, it is essential to comply with the legal r
 
 ## Features
 
-- **Current Measurement**: Uses the ACS712 current sensor module to measure current.
+- **Current Measurement**: Uses the ACS712 current sensor module (20A-Version) to measure current.
 - **Relay Control**: Toggles a relay based on the current readings.
 - **Adjustable Threshold**: Users can set a threshold to activate the relay.
 - **Moving Average**: Reduces noise by calculating a moving average of the current readings.
@@ -38,18 +38,20 @@ When working with electrical systems, it is essential to comply with the legal r
 
 ## Components
 
-- **Arduino Nano**
-- **ACS712 Current Sensor Module**
-- **Relay Module**
+- **Arduino Nano or Clone**
+- **ACS712 Current Sensor Module (20A-Version)**
+- **Relay Module 5V**
 - **LED (integrated on the Arduino Nano)**
+- **24V Power Supply**
+- **Step Down Converter 24V to 5V**
 
 ## Pinout
 
 | Component      | Arduino Pin |
 |----------------|-------------|
 | ACS712         | A0          |
-| Relay          | 8           |
-| Built-in LED   | 13          |
+| Relay          | D8          |
+| Built-in LED   | D13         |
 
 ## Adjustable Parameters
 
